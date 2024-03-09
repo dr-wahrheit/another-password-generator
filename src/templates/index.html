@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Another Password Generator 🔑</title>
+  <meta name="description"
+    content="Generate strong and unique passwords online. Choose the length, character types and advanced options to create perfect passwords for you. No registration required, easy to use and completely free.">
+
+  <meta property="og:title" content="Online Password Generator">
+  <meta property="og:description"
+    content="Generate strong and unique passwords online. Choose the length, character types and advanced options to create perfect passwords for you. No registration required, easy to use and completely free.">
+  <meta property="og:image" content="https://www.example.com/image.png">
+  <meta property="og:url" content="https://www.example.com">
+
+
+  <meta property="og:type" content="website">
+
+
+
+
+  <link rel="stylesheet"
+    href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta name="theme-color" content="#fefe21" />
+  <meta name="google-site-verification" content="kCIGPOMfoG9s_kFCsJrS7vcmgS5xBGsn8-KTbW6vc34" />
+  <script async data-id="101445408" src="//static.getclicky.com/js"></script>
+
+</head>
+
+<body style="display: none;">
+
+  <div class="container">
+    <section class="hero">
+      <div class="hero-body">
+        <p class="title">
+          Secure Password Generator
+        </p>
+        <p class="subtitle">
+          Tired of weak passwords? Another Password Generator is here to save the day (and your data)!
+          <!-- Forget weak passwords. Generate strong, unique ones with a single click. -->
+          <!-- Our secure password generator creates random, unguessable passwords for all your online accounts, keeping your
+          data safe and protected.
+
+          No more struggling to remember complex combinations or reusing the same password everywhere. Get started with
+          our free tool today! -->
+        </p>
+      </div>
+    </section>
+
+    <section class="section pwd">
+      <div class="pwd-container box">
+        <div id="pwd-generated" class="pwd-generated"></div>
+        <div class="actions">
+          <div id="action-redo" class="action redo is-clickable">
+            <i class="fas fa-redo-alt"></i>
+          </div>
+          <div id="action-copy-to-clipboard" class="action clipboard is-clickable">
+            <i class="fas fa-clipboard"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="section">
+      <button class="button is-large is-responsive">Primary</button>
+    </section> -->
+
+    <section class="section settings">
+
+      <fieldset class="settings-container">
+        <legend>⚙️ Settings</legend>
+        <div class="columns">
+          <div class="column">
+            Password Length
+          </div>
+          <div class="column is-three-quarters">
+            <input id="settings-password-length" class="input setting-element" type="number" placeholder="16"
+              value="16">
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <label class="checkbox">
+              <input id="settings-allow-numbers" type="checkbox" class="setting-element" checked>
+              Allow Numbers (0-9)
+            </label>
+          </div>
+          <div class="column">
+            <label class="checkbox">
+              <input id="settings-exclude-similar" type="checkbox" class="setting-element">
+              Exclude Similar (iI1loO0)
+            </label>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <label class="checkbox">
+              <input id="settings-allow-uppercase" type="checkbox" class="setting-element" checked>
+              Allow Uppercase (ABC)
+            </label>
+          </div>
+          <div class="column">
+            <label class="checkbox">
+              <input id="settings-exclude-duplicate-characters" type="checkbox" class="setting-element">
+              Exclude Duplicate Characters
+            </label>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <label class="checkbox">
+              <input id="settings-allow-lowercase" type="checkbox" class="setting-element" checked>
+              Allow Lowercase (abc)
+            </label>
+          </div>
+
+        </div>
+        <div class="columns">
+          <div class="column">
+            <label class="checkbox">
+              <input id="settings-allow-symbols" type="checkbox" class="setting-element" checked>
+              Allow Symbols (<span id="settings-allow-symbols-list"></span>)
+            </label>
+          </div>
+        </div>
+      </fieldset>
+
+    </section>
+
+  </div>
+
+  <noscript>
+    <p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101445408ns.gif" /></p>
+  </noscript>
+</body>
+
+</html>
