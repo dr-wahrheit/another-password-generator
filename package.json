@@ -1,7 +1,7 @@
 {
-  "name": "easy-password-generator",
-  "version": "1.0.0",
-  "description": "",
+  "name": "another-password-generator",
+  "version": "0.0.1",
+  "description": "Another Password Generator is a simple, secure web application that generates strong, unique passwords for all your online accounts.",
   "private": true,
   "packageManager": "yarn@4.1.0",
   "scripts": {
@@ -9,12 +9,26 @@
     "watch": "webpack --watch",
     "start": "webpack serve --open",
     "build": "webpack",
-    "publish": "npm run build && git subtree push --prefix dist origin gh-pages",
-    "dist": "npm run build && echo 'gitdir: /Users/stefanovalente/Workspace/wLabs/easy-password-generator/.git/worktrees/dist' > ./dist/.git"
+    "dist": "./make_dist.sh"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "password generator",
+    "random password generator",
+    "strong password generator",
+    "secure password generator",
+    "unique password generator",
+    "password security",
+    "online password generator",
+    "web application",
+    "open-source",
+    "free password generator",
+    "password management",
+    "password strength",
+    "cybersecurity",
+    "web security"
+  ],
+  "author": "https://github.com/dr-wahrheit",
+  "license": "MIT",
   "devDependencies": {
     "css-loader": "^6.10.0",
     "html-webpack-plugin": "^5.6.0",
