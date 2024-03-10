@@ -1,4 +1,6 @@
-$secondaryColor: #ffa445;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+$secondaryColor: #a89d91;
 $primaryColor: #485fc7;
 $backgroundColor: #ffffff;
 
@@ -18,7 +20,7 @@ body {
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	font-family: "Kode Mono", monospace;
+  font-family: "Open Sans", sans-serif;
 	font-optical-sizing: auto;
 	font-weight: 400;
 	font-style: normal;
@@ -30,11 +32,20 @@ body {
 
 .title,
 .subtitle {
+	font-family: "Kode Mono", monospace;
 	color: inherit;
 }
 
 .section {
 	padding: 2rem 2rem;
+}
+
+.is-fullheight {
+	min-height: 100vh;
+}
+
+.is-fullwidth {
+	min-width: 100%;
 }
 
 .notification {
@@ -112,6 +123,7 @@ body {
 
 	.actions {
 		display: flex;
+
 		.action {
 			padding: 0 1rem;
 			color: $linkColor;
@@ -163,4 +175,36 @@ body {
 
 .is-owerflow-auto {
 	overflow: auto;
+}
+
+
+input {
+	+span.toggle {
+		position: relative;
+		display: inline-block;
+		height: 24px;
+		width: 40px;
+		margin-bottom: -6px;
+		margin-left: -24px;
+		background: #eee;
+		border-radius: 100vh;
+		color: rgba(0, 37, 255, 1);
+		&:before {
+			content: ' ';
+			position: absolute;
+			top: 4px;
+			left: 4px;
+			right: auto;
+			height: 16px;
+			width: 16px;
+			background: #bbb;
+			border-radius: 100vh;
+			transition: all 0.4s ease-in-out;
+		}
+	}
+	&:checked+span.toggle:before {
+		left: 20px;
+		background: $primaryColor;
+		transition: all 0.4s ease-in-out;
+	}
 }
