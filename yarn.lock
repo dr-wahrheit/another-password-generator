@@ -644,6 +644,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"another-password-generator@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "another-password-generator@workspace:."
+  dependencies:
+    css-loader: "npm:^6.10.0"
+    html-webpack-plugin: "npm:^5.6.0"
+    sass: "npm:^1.71.1"
+    sass-loader: "npm:^14.1.1"
+    style-loader: "npm:^3.3.4"
+    webpack: "npm:^5.90.3"
+    webpack-cli: "npm:^5.1.4"
+    webpack-dev-server: "npm:^5.0.2"
+  languageName: unknown
+  linkType: soft
+
 "ansi-html-community@npm:^0.0.8":
   version: 0.0.8
   resolution: "ansi-html-community@npm:0.0.8"
@@ -1271,21 +1286,6 @@ __metadata:
   checksum: 10c0/26f364ebcdb6395f95124fda411f63137a4bfb5d3a06453f7f23dfe52502905bd84e0488172e0f9ec295fdc45f05c23d5d91baf16bd26f0fe9acd777a188dc39
   languageName: node
   linkType: hard
-
-"easy-password-generator@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "easy-password-generator@workspace:."
-  dependencies:
-    css-loader: "npm:^6.10.0"
-    html-webpack-plugin: "npm:^5.6.0"
-    sass: "npm:^1.71.1"
-    sass-loader: "npm:^14.1.1"
-    style-loader: "npm:^3.3.4"
-    webpack: "npm:^5.90.3"
-    webpack-cli: "npm:^5.1.4"
-    webpack-dev-server: "npm:^5.0.2"
-  languageName: unknown
-  linkType: soft
 
 "ee-first@npm:1.1.1":
   version: 1.1.1
