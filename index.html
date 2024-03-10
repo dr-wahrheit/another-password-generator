@@ -34,105 +34,184 @@
 
 <body style="display: none;">
 
+  <div id="notification" class="notification is-invisible">
+    <button class="delete"></button>
+    <p><strong>Password copied to clipboard!</strong></p>
+    <p><strong>Remember</strong>: Don't paste your password anywhere suspicious. For maximum security, consider using a
+      password manager
+      to securely store your passwords.</p>
+  </div>
+
   <div class="container">
     <section class="hero">
       <div class="hero-body">
-        <p class="title">
-          Secure Password Generator
-        </p>
-        <p class="subtitle">
-          Tired of weak passwords? Another Password Generator is here to save the day (and your data)!
-          <!-- Forget weak passwords. Generate strong, unique ones with a single click. -->
-          <!-- Our secure password generator creates random, unguessable passwords for all your online accounts, keeping your
-          data safe and protected.
-
-          No more struggling to remember complex combinations or reusing the same password everywhere. Get started with
-          our free tool today! -->
-        </p>
+        <h1 class="title is-1">
+          Stronger Passwords, One Click Away!
+        </h1>
+        <h2 class="subtitle is-2">
+          Generate secure, unique passwords for all your accounts.
+        </h2>
       </div>
     </section>
 
     <section class="section pwd">
-      <div class="pwd-container box">
-        <div id="pwd-generated" class="pwd-generated"></div>
-        <div class="actions">
-          <div id="action-redo" class="action redo is-clickable">
-            <i class="fas fa-redo-alt"></i>
+      <div class="box is-relative">
+        <div class="pwd-container">
+          <div class="is-owerflow-auto">
+            <div id="pwd-generated" class="pwd-generated"></div>
           </div>
-          <div id="action-copy-to-clipboard" class="action clipboard is-clickable">
-            <i class="fas fa-clipboard"></i>
+          <div class="actions">
+            <div id="action-redo" class="action redo is-clickable">
+              <i class="fas fa-redo-alt"></i>
+            </div>
+            <div id="action-copy-to-clipboard" class="action clipboard is-clickable">
+              <i class="fas fa-clipboard"></i>
+            </div>
+          </div>
+        </div>
+        <progress id="pwd-strength" class="progress" value="100" max="100"></progress>
+      </div>
+    </section>
+    <section class="section">
+
+      <div class="columns">
+
+        <div class="column">
+          <div class="content">
+            <h2>Why Secure Passwords Matter?</h2>
+            <p>
+              Imagine your passwords are the keys to your online life. Weak passwords, like "password123," are easy to
+              guess or crack, leaving your accounts vulnerable. Here's why secure passwords are crucial:
+            </p>
+
+            <ul>
+              <li><strong>Block Hackers</strong>: Strong passwords make it much harder for hackers to break into your
+                accounts. They act as a complex barrier, taking significant time and resources to guess.</li>
+              <li><strong>Protect Your Data</strong>: Secure passwords safeguard your personal information, photos,
+                messages, and financial details stored online.</li>
+              <li><strong>Prevent Identity Theft</strong>: Strong passwords help prevent identity theft, where someone
+                steals your personal information to commit fraud.</li>
+              <li><strong>Maintain Control</strong>: Using secure passwords empowers you to control who accesses your
+                online accounts.</li>
+            </ul>
+
+            <strong>Think of it like this</strong>: A flimsy lock is easy to break, but a strong one offers real
+            security. Apply the same logic to your passwords and choose complex combinations to keep your digital life
+            safe!
+
+          </div>
+        </div>
+
+        <!-- SETTINGS -->
+        <div class="column">
+          <div class="settings-container box">
+            <h4 class="subtitle is-4">⚙️ Settings</h4>
+
+
+            <div class="columns  is-vcentered">
+              <div class="column">
+                Password Length
+                <span id="settings-password-length-display">16</span>
+              </div>
+              <div class="column is-three-quarters">
+                <input id="settings-password-length" type="range" name="settings-password-length" min="0" max="128"
+                  value="16" step="1" class="setting-element" />
+              </div>
+            </div>
+
+            <div class="columns">
+              <div class="column">
+                <label class="radio">
+                  <input type="radio" class="setting-pwd-mode" name="pwd-mode" value="all-characters" checked>
+                  All characters
+                </label>
+              </div>
+              <div class="column">
+                <label class="checkbox">
+                  <input id="settings-allow-numbers" type="checkbox" class="setting-element" checked>
+                  Allow Numbers (0-9)
+                </label>
+              </div>
+
+            </div>
+            <div class="columns">
+              <div class="column">
+                <label class="radio">
+                  <input type="radio" class="setting-pwd-mode" name="pwd-mode" value="easy-to-read">
+                  Easy to read
+                </label>
+              </div>
+              <div class="column">
+                <label class="checkbox">
+                  <input id="settings-allow-uppercase" type="checkbox" class="setting-element" checked>
+                  Allow Uppercase (ABC)
+                </label>
+              </div>
+
+
+            </div>
+            <div class="columns">
+              <div class="column">
+                <label class="radio">
+                  <input type="radio" class="setting-pwd-mode" name="pwd-mode" value="easy-to-say">
+                  Easy to say
+                </label>
+              </div>
+              <div class="column">
+                <label class="checkbox">
+                  <input id="settings-allow-lowercase" type="checkbox" class="setting-element" checked>
+                  Allow Lowercase (abc)
+                </label>
+              </div>
+
+
+            </div>
+            <div class="columns">
+              <div class="column"></div>
+              <div class="column">
+                <label class="checkbox">
+                  <input id="settings-allow-symbols" type="checkbox" class="setting-element" checked>
+                  Allow Symbols (<span id="settings-allow-symbols-list"></span>)
+                </label>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column"></div>
+              <div class="column">
+                <label class="checkbox">
+                  <input id="settings-exclude-duplicate-characters" type="checkbox" class="setting-element">
+                  Exclude Duplicate Characters
+                </label>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column"></div>
+              <div class="column">
+                <label class="checkbox">
+                  <input id="settings-exclude-similar-characters" type="checkbox" class="setting-element">
+                  Exclude Similar (iI1loO0)
+                </label>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- <section class="section">
-      <button class="button is-large is-responsive">Primary</button>
-    </section> -->
-
-    <section class="section settings">
-
-      <fieldset class="settings-container">
-        <legend>⚙️ Settings</legend>
-        <div class="columns">
-          <div class="column">
-            Password Length
-          </div>
-          <div class="column is-three-quarters">
-            <input id="settings-password-length" class="input setting-element" type="number" placeholder="16"
-              value="16">
-          </div>
-        </div>
-        <div class="columns">
-          <div class="column">
-            <label class="checkbox">
-              <input id="settings-allow-numbers" type="checkbox" class="setting-element" checked>
-              Allow Numbers (0-9)
-            </label>
-          </div>
-          <div class="column">
-            <label class="checkbox">
-              <input id="settings-exclude-similar" type="checkbox" class="setting-element">
-              Exclude Similar (iI1loO0)
-            </label>
-          </div>
-        </div>
-        <div class="columns">
-          <div class="column">
-            <label class="checkbox">
-              <input id="settings-allow-uppercase" type="checkbox" class="setting-element" checked>
-              Allow Uppercase (ABC)
-            </label>
-          </div>
-          <div class="column">
-            <label class="checkbox">
-              <input id="settings-exclude-duplicate-characters" type="checkbox" class="setting-element">
-              Exclude Duplicate Characters
-            </label>
-          </div>
-        </div>
-        <div class="columns">
-          <div class="column">
-            <label class="checkbox">
-              <input id="settings-allow-lowercase" type="checkbox" class="setting-element" checked>
-              Allow Lowercase (abc)
-            </label>
-          </div>
-
-        </div>
-        <div class="columns">
-          <div class="column">
-            <label class="checkbox">
-              <input id="settings-allow-symbols" type="checkbox" class="setting-element" checked>
-              Allow Symbols (<span id="settings-allow-symbols-list"></span>)
-            </label>
-          </div>
-        </div>
-      </fieldset>
 
     </section>
+
+
 
   </div>
+  <!-- <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+      </p>
+    </div>
+  </footer> -->
 
   <noscript>
     <p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101445408ns.gif" /></p>
