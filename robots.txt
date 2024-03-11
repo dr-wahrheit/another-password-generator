@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: 
+Sitemap: https://dr-wahrheit.github.io/another-password-generator/sitemap.xml

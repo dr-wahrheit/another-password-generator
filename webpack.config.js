@@ -41,7 +41,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif|svg|ico|xml)$/i,
+        test: /\.(png|jpe?g|gif|svg|ico|xml|txt)$/i,
         type: 'asset/resource',
       },
       {
@@ -49,6 +49,13 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           filename: 'sitemap.xml',
+        },
+      },
+      {
+        test: /\.txt/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'robots.txt',
         },
       },
     ],

@@ -1,8 +1,9 @@
 // load styles
 import '../styles/style.scss';
 
-// load sitemap
+// load sitemap & robots
 const sitemap = require('../../sitemap.xml');
+const robots = require('../../robots.txt');
 
 // load images
 import faviconIco from '../images/favicon.ico';
