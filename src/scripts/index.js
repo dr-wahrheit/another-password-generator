@@ -78,6 +78,7 @@ let availableChars = [];
 const pwdGeneratedEl = document.getElementById('pwd-generated');
 const notificationEl = document.getElementById('notification');
 const notificationDeleteBtnEl = document.querySelector('.notification button.delete');
+const settingsPasswordLengthRangeEl = document.getElementById('settings-password-length-range');
 const settingsPasswordLengthEl = document.getElementById('settings-password-length');
 const pwdGeneratedStrengthEl = document.getElementById('pwd-strength');
 const settingsAllowNumbersEl = document.getElementById('settings-allow-numbers');
@@ -139,7 +140,7 @@ function createPassword() {
 
   console.time('createPassword');
 
-  const passwordLength = getPasswordLength(settingsPasswordLengthEl);
+  const passwordLength = getPasswordLength(settingsPasswordLengthRangeEl);
   const indexes = crypto.getRandomValues(new Uint32Array(availableChars.length));
   const password = new Password(settingsExcludeDuplicateEl.checked);
 
@@ -210,8 +211,10 @@ function calculatePasswordLevel() {
   let pwdLevel = 0;
 
   // Minimum Password Length
-  const pwdLength = getPasswordLength(settingsPasswordLengthEl);
-  if (pwdLength < 8) {
+  const pwdLength = getPasswordLength(settingsPasswordLengthRangeEl);
+  if (pwdLength < 4) {
+    pwdLevel = -4;
+  } else if (pwdLength < 8) {
     pwdLevel += 1;
   } else if (pwdLength < 12) {
     pwdLevel += 2;
@@ -248,6 +251,7 @@ function calculatePasswordLevel() {
   }
 
   pwdGeneratedStrengthEl.classList.remove('is-danger', 'is-warning', 'is-info', 'is-success');
+
   if (pwdLevel < 3) {
     pwdGeneratedStrengthEl.classList.add('is-danger');
   } else if (pwdLevel < 6) {
@@ -260,8 +264,11 @@ function calculatePasswordLevel() {
 }
 
 function bindEvents() {
+  settingsPasswordLengthRangeEl.addEventListener('change', () => {
+    settingsPasswordLengthEl.value = settingsPasswordLengthRangeEl.value;
+  });
   settingsPasswordLengthEl.addEventListener('change', () => {
-    document.getElementById('settings-password-length-display').innerHTML = settingsPasswordLengthEl.value;
+    settingsPasswordLengthRangeEl.value = settingsPasswordLengthEl.value;
   });
 
   notificationDeleteBtnEl.addEventListener('click', () => {
