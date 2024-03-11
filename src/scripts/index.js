@@ -296,10 +296,7 @@ function bindEvents() {
     notificationEl.classList.add('is-invisible');
   });
 
-  actionRedoEl.addEventListener('click', () => {
-    pwdGeneratedEl.innerHTML = createPassword();
-    calculatePasswordLevel();
-  });
+  actionRedoEl.addEventListener('click', handlePasswordCreation);
 
   document.getElementById('action-copy-to-clipboard').addEventListener('click', copyToClipboard);
 
@@ -312,23 +309,44 @@ function bindEvents() {
   }
 }
 
-function init() {
-  console.log('init');
+function writeWellcomeMessage() {
+  const wellcomeMessageSettings = 'color:#485fc7; font-size: 16px; font-weight: 700; font-family: monospace';
+  console.log('%c⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀', wellcomeMessageSettings);
+  console.log('%c⠀⠀⠀ Welcome to the developer vault!.                     ⠀⠀⠀', wellcomeMessageSettings);
+  console.log('%c⠀⠀⠀ Top secret password generation happens here...       ⠀⠀⠀', wellcomeMessageSettings);
+  console.log('%c⠀⠀⠀ Mostly. ^_^                                          ⠀⠀⠀', wellcomeMessageSettings);
+  console.log('%c⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀ ⠀⠀⠀', wellcomeMessageSettings);
+}
 
+function displayPage() {
+  document.body.style = 'display: auto';
+}
+
+function handlePasswordCreation() {
+  pwdGeneratedEl.innerHTML = createPassword();
+  calculatePasswordLevel();
+}
+
+function initalizePageElements() {
   document.getElementById('settings-allow-symbols-list').innerHTML = Array.from(SPECIAL_CHARACTERS).map((el) =>
     String.fromCharCode(el)
   );
+}
 
-  // Show content only when page is loaded
-  document.body.style = 'display: auto';
-
-  // binding
+// Init
+function init() {
+  writeWellcomeMessage();
 
   bindEvents();
+  initalizePageElements();
 
+  // Update the AvailableChars array based on the html default
+  // and create the first password
   updateAvailableChars();
-  pwdGeneratedEl.innerHTML = createPassword();
-  calculatePasswordLevel();
+  handlePasswordCreation();
+
+  // Show content only when page is loaded
+  displayPage();
 }
 
 window.onload = init;
