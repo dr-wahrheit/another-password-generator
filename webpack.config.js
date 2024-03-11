@@ -41,8 +41,15 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif|svg|ico)$/i,
+        test: /\.(png|jpe?g|gif|svg|ico|xml)$/i,
         type: 'asset/resource',
+      },
+      {
+        test: /\.xml/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'sitemap.xml',
+        },
       },
     ],
   },
