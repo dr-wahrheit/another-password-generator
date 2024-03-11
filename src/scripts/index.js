@@ -77,6 +77,7 @@ let availableChars = [];
 
 const pwdGeneratedEl = document.getElementById('pwd-generated');
 const notificationEl = document.getElementById('notification');
+const actionRedoEl = document.getElementById('action-redo');
 const notificationDeleteBtnEl = document.querySelector('.notification button.delete');
 const settingsPasswordLengthRangeEl = document.getElementById('settings-password-length-range');
 const settingsPasswordLengthEl = document.getElementById('settings-password-length');
@@ -103,6 +104,14 @@ function getPasswordLength(settingsPasswordLength) {
   return 0;
 }
 
+function validateAvailableCharsLength() {
+  if (availableChars.length === 0) {
+    actionRedoEl.classList.add('is-invisible');
+    return;
+  }
+  actionRedoEl.classList.remove('is-invisible');
+}
+
 // Update availableChars based on settings during initialization
 function updateAvailableChars() {
   console.time('updateAvailableChars');
@@ -112,6 +121,7 @@ function updateAvailableChars() {
     ...(settingsAllowLowercaseEl.checked ? LOWERCASE : []),
     ...(settingsAllowSymbolsEl.checked ? SPECIAL_CHARACTERS : []),
   ];
+  validateAvailableCharsLength();
   console.timeEnd('updateAvailableChars');
 }
 
@@ -281,10 +291,11 @@ function bindEvents() {
     notificationEl.classList.add('is-invisible');
   });
 
-  document.getElementById('action-redo').addEventListener('click', () => {
+  actionRedoEl.addEventListener('click', () => {
     pwdGeneratedEl.innerHTML = createPassword();
     calculatePasswordLevel();
   });
+
   document.getElementById('action-copy-to-clipboard').addEventListener('click', copyToClipboard);
 
   for (let el of document.getElementsByClassName('setting-element')) {
