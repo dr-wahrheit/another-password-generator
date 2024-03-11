@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
 $secondaryColor: #a89d91;
 $primaryColor: #485fc7;
@@ -20,7 +20,7 @@ body {
 	padding: 0;
 	width: 100%;
 	height: 100%;
-  font-family: "Open Sans", sans-serif;
+	font-family: "Open Sans", sans-serif;
 	font-optical-sizing: auto;
 	font-weight: 400;
 	font-style: normal;
@@ -143,9 +143,9 @@ body {
 	}
 }
 
-// #settings-password-length {
-// 	width: 50px;
-// }
+#settings-password-length {
+	width: 64px;
+}
 #settings-password-length-range {
 	width: 100%;
 }
@@ -180,9 +180,8 @@ body {
 	overflow: auto;
 }
 
-
 input {
-	+span.toggle {
+	+ span.toggle {
 		position: relative;
 		display: inline-block;
 		height: 24px;
@@ -193,7 +192,7 @@ input {
 		border-radius: 100vh;
 		color: rgba(0, 37, 255, 1);
 		&:before {
-			content: ' ';
+			content: " ";
 			position: absolute;
 			top: 4px;
 			left: 4px;
@@ -205,7 +204,7 @@ input {
 			transition: all 0.4s ease-in-out;
 		}
 	}
-	&:checked+span.toggle:before {
+	&:checked + span.toggle:before {
 		left: 20px;
 		background: $primaryColor;
 		transition: all 0.4s ease-in-out;

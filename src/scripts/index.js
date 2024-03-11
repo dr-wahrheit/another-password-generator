@@ -264,10 +264,16 @@ function calculatePasswordLevel() {
 }
 
 function bindEvents() {
-  settingsPasswordLengthRangeEl.addEventListener('change', () => {
+  settingsPasswordLengthRangeEl.addEventListener('input', () => {
     settingsPasswordLengthEl.value = settingsPasswordLengthRangeEl.value;
   });
   settingsPasswordLengthEl.addEventListener('change', () => {
+    if (settingsPasswordLengthEl.value < 4) {
+      settingsPasswordLengthEl.value = 4;
+    }
+    if (settingsPasswordLengthEl.value > 56) {
+      settingsPasswordLengthEl.value = 56;
+    }
     settingsPasswordLengthRangeEl.value = settingsPasswordLengthEl.value;
   });
 
