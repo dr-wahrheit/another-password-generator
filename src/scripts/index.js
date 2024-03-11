@@ -4,6 +4,7 @@ import '../styles/style.scss';
 // load images
 import faviconIco from '../images/favicon.ico';
 import faviconImage from '../images/favicon.png';
+import shareImage from '../images/share.png';
 
 class Password {
   #excludeDuplicates;
