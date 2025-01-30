@@ -66,6 +66,16 @@ body {
 	}
 }
 
+#pwd-strength-tagbox {
+	position: absolute;
+	bottom: 5px;
+	right: 0px;
+
+	span {
+		border-top-left-radius: 6px;
+	}
+}
+
 #pwd-strength {
 	position: absolute;
 	bottom: 0px;
@@ -75,47 +85,10 @@ body {
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	height: 0.5rem;
-
-	// &.is-danger {
-	// 	&::-webkit-progress-value {
-	// 		background-color: greenyellow;
-	// 	}
-	// 	&::-moz-progress-bar {
-	// 		background-color: greenyellow;
-	// 	}
-	// 	&::-ms-fill {
-	// 		background-color: greenyellow;
-	// 	}
-	// }
-
-	// &.is-warning {
-	// 	&::-webkit-progress-value {
-	// 		background-color: greenyellow;
-	// 	}
-	// 	&::-moz-progress-bar {
-	// 		background-color: greenyellow;
-	// 	}
-	// 	&::-ms-fill {
-	// 		background-color: greenyellow;
-	// 	}
-	// }
-
-	// &.is-success {
-	// 	&::-webkit-progress-value {
-	// 		background-color: greenyellow;
-	// 	}
-	// 	&::-moz-progress-bar {
-	// 		background-color: greenyellow;
-	// 	}
-	// 	&::-ms-fill {
-	// 		background-color: greenyellow;
-	// 	}
-	// }
 }
 
 .pwd-container {
 	font-size: 2rem;
-	// border-bottom: 5px solid green;
 	display: flex;
 	flex-direction: row;
 	align-items: baseline;
@@ -190,7 +163,8 @@ input {
 		margin-left: -24px;
 		background: #eee;
 		border-radius: 100vh;
-		color: rgba(0, 37, 255, 1);
+		color: $primaryColor; 
+		
 		&:before {
 			content: " ";
 			position: absolute;

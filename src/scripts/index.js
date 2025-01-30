@@ -87,6 +87,7 @@ const notificationDeleteBtnEl = document.querySelector('.notification button.del
 const settingsPasswordLengthRangeEl = document.getElementById('settings-password-length-range');
 const settingsPasswordLengthEl = document.getElementById('settings-password-length');
 const pwdGeneratedStrengthEl = document.getElementById('pwd-strength');
+const pwdGeneratedStrengthTagEl = document.getElementById('pwd-strength-tag');
 const settingsAllowNumbersEl = document.getElementById('settings-allow-numbers');
 const settingsAllowUppercaseEl = document.getElementById('settings-allow-uppercase');
 const settingsAllowLowercaseEl = document.getElementById('settings-allow-lowercase');
@@ -118,14 +119,27 @@ function validateAvailableCharsLength() {
 }
 
 // Update availableChars based on settings during initialization
+// function updateAvailableChars() {
+//   console.time('updateAvailableChars');
+//   availableChars = [
+//     ...(settingsAllowNumbersEl.checked ? NUMBERS : []),
+//     ...(settingsAllowUppercaseEl.checked ? UPPERCASE : []),
+//     ...(settingsAllowLowercaseEl.checked ? LOWERCASE : []),
+//     ...(settingsAllowSymbolsEl.checked ? SPECIAL_CHARACTERS : []),
+//   ];
+//   validateAvailableCharsLength();
+//   console.timeEnd('updateAvailableChars');
+// }
+
 function updateAvailableChars() {
   console.time('updateAvailableChars');
-  availableChars = [
-    ...(settingsAllowNumbersEl.checked ? NUMBERS : []),
-    ...(settingsAllowUppercaseEl.checked ? UPPERCASE : []),
-    ...(settingsAllowLowercaseEl.checked ? LOWERCASE : []),
-    ...(settingsAllowSymbolsEl.checked ? SPECIAL_CHARACTERS : []),
-  ];
+  availableChars = new Set();
+
+  if (settingsAllowNumbersEl.checked) availableChars = new Set([...availableChars, ...NUMBERS]);
+  if (settingsAllowUppercaseEl.checked) availableChars = new Set([...availableChars, ...UPPERCASE]);
+  if (settingsAllowLowercaseEl.checked) availableChars = new Set([...availableChars, ...LOWERCASE]);
+  if (settingsAllowSymbolsEl.checked) availableChars = new Set([...availableChars, ...SPECIAL_CHARACTERS]);
+
   validateAvailableCharsLength();
   console.timeEnd('updateAvailableChars');
 }
@@ -137,51 +151,69 @@ function showNotification() {
   }, 3000);
 }
 
-function copyToClipboard() {
-  const el = document.createElement('textarea');
-  el.style.visibility = 'none';
-  el.value = pwdGeneratedEl.innerText;
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand('copy');
-  document.body.removeChild(el);
-  showNotification();
+async function copyToClipboard() {
+  try {
+    await navigator.clipboard.writeText(pwdGeneratedEl.innerText);
+    showNotification();
+  } catch (err) {
+    console.error('Error copying text: ', err);
+  }
 }
 
 function createPassword() {
-  if (availableChars.length === 0) {
+  if (availableChars.size === 0) {
     return '';
   }
 
   console.time('createPassword');
 
   const passwordLength = getPasswordLength(settingsPasswordLengthRangeEl);
-  const indexes = crypto.getRandomValues(new Uint32Array(availableChars.length));
-  const password = new Password(settingsExcludeDuplicateEl.checked);
+  const charsArray = Array.from(availableChars);
+  const randomValues = crypto.getRandomValues(new Uint32Array(passwordLength));
 
-  const maxPasswordLength = settingsExcludeDuplicateEl.checked
-    ? Math.min(passwordLength, availableChars.length)
-    : passwordLength;
-
-  let loop = 0;
-  while (password.length < maxPasswordLength) {
-    const index = indexes[loop % indexes.length] % availableChars.length;
-    const char = String.fromCharCode(availableChars[index]);
-
-    if (!isSimilarCharExcluded(char)) {
-      password.addChar(char);
-    }
-    loop++;
-  }
-
-  const passwordAsString = password.toString();
-
-  // Clear password in memory
-  password.clear();
+  const password = Array.from({ length: passwordLength }, (_, i) => {
+    return String.fromCharCode(charsArray[randomValues[i] % charsArray.length]);
+  }).join('');
 
   console.timeEnd('createPassword');
-  return passwordAsString;
+  return password;
 }
+
+// function createPassword() {
+//   if (availableChars.size === 0) {
+//     return '';
+//   }
+
+//   console.time('createPassword');
+
+//   const passwordLength = getPasswordLength(settingsPasswordLengthRangeEl);
+//   const charsArray = Array.from(availableChars);
+//   const indexes = crypto.getRandomValues(new Uint32Array(charsArray.length));
+//   const password = new Password(settingsExcludeDuplicateEl.checked);
+
+//   const maxPasswordLength = settingsExcludeDuplicateEl.checked
+//     ? Math.min(passwordLength, charsArray.length)
+//     : passwordLength;
+
+//   let loop = 0;
+//   while (password.length < maxPasswordLength) {
+//     const index = indexes[loop % indexes.length] % charsArray.length;
+//     const char = String.fromCharCode(charsArray[index]);
+
+//     if (!isSimilarCharExcluded(char)) {
+//       password.addChar(char);
+//     }
+//     loop++;
+//   }
+
+//   const passwordAsString = password.toString();
+
+//   // Clear password in memory
+//   password.clear();
+
+//   console.timeEnd('createPassword');
+//   return passwordAsString;
+// }
 
 function updateSettings() {
   const pwdMode = document.querySelector('input[name="pwd-mode"]:checked').value;
@@ -221,60 +253,37 @@ function updateSettings() {
   updateAvailableChars();
 }
 
+function calculatePasswordEntropy(length, charsetSize) {
+  return length * Math.log2(charsetSize);
+}
+
 function calculatePasswordLevel() {
   console.log('calculatePasswordLevel');
-  let pwdLevel = 0;
 
-  // Minimum Password Length
   const pwdLength = getPasswordLength(settingsPasswordLengthRangeEl);
-  if (pwdLength < 4) {
-    pwdLevel = -4;
-  } else if (pwdLength < 8) {
-    pwdLevel += 1;
-  } else if (pwdLength < 12) {
-    pwdLevel += 2;
-  } else if (pwdLength < 16) {
-    pwdLevel += 3;
-  } else {
-    pwdLevel += 4;
-  }
-
-  // Character Type Complexity
-  if (
-    settingsAllowLowercaseEl.checked &&
-    !settingsAllowNumbersEl.checked &&
-    !settingsAllowUppercaseEl.checked &&
-    !settingsAllowSymbolsEl.checked
-  ) {
-    pwdLevel += 1;
-  } else if (
-    settingsAllowLowercaseEl.checked &&
-    settingsAllowNumbersEl.checked &&
-    !settingsAllowUppercaseEl.checked &&
-    !settingsAllowSymbolsEl.checked
-  ) {
-    pwdLevel += 2;
-  } else if (
-    settingsAllowLowercaseEl.checked &&
-    settingsAllowNumbersEl.checked &&
-    settingsAllowUppercaseEl.checked &&
-    !settingsAllowSymbolsEl.checked
-  ) {
-    pwdLevel += 3;
-  } else {
-    pwdLevel += 4;
-  }
+  const charsetSize = availableChars.size || 1;
+  const entropy = calculatePasswordEntropy(pwdLength, charsetSize);
+  console.log('entropy', entropy, 'charsetSize', charsetSize, 'pwdLength', pwdLength);
 
   pwdGeneratedStrengthEl.classList.remove('is-danger', 'is-warning', 'is-info', 'is-success');
+  pwdGeneratedStrengthTagEl.classList.remove('has-background-danger', 'has-background-warning', 'has-background-info', 'has-background-success');
 
-  if (pwdLevel < 3) {
-    pwdGeneratedStrengthEl.classList.add('is-danger');
-  } else if (pwdLevel < 6) {
-    pwdGeneratedStrengthEl.classList.add('is-warning');
-  } else if (pwdLevel < 8) {
-    pwdGeneratedStrengthEl.classList.add('is-info');
+  if (entropy < 28) {
+    pwdGeneratedStrengthEl.classList.add('is-danger'); // Molto debole
+    pwdGeneratedStrengthTagEl.classList.add('has-background-danger', 'has-text-danger-light'); // Molto debole
+    pwdGeneratedStrengthTagEl.innerText = 'Too easy to guess';
+  } else if (entropy < 36) {
+    pwdGeneratedStrengthEl.classList.add('is-warning'); // Debole
+    pwdGeneratedStrengthTagEl.classList.add('has-background-warning', 'has-text-warning-dark'); // Debole
+    pwdGeneratedStrengthTagEl.innerText = 'At risk of being compromised';
+  } else if (entropy < 60) {
+    pwdGeneratedStrengthEl.classList.add('is-info'); // Buona
+    pwdGeneratedStrengthTagEl.classList.add('has-background-info', 'has-text-info-light'); // Buona
+    pwdGeneratedStrengthTagEl.innerText = 'Secure for normal use';
   } else {
-    pwdGeneratedStrengthEl.classList.add('is-success');
+    pwdGeneratedStrengthEl.classList.add('is-success'); // Molto sicura
+    pwdGeneratedStrengthTagEl.classList.add('has-background-success', 'has-text-success-light'); // Molto sicura
+    pwdGeneratedStrengthTagEl.innerText = 'Protects against hacking attempts';
   }
 }
 
