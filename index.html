@@ -56,122 +56,191 @@
 
   <div class="container">
     <section class="section">
-      <div class="columns is-fullheight is-align-items-center is-justify-content-center">
+      <div class="columns is-fullheight is-align-content-flex-start is-justify-content-center">
         <!-- SETTINGS -->
         <div class="column is-5">
           <section class="is-relative box section pwd has-background-light">
             <div class="">
-              <div class="pwd-container">
-                <div class="is-owerflow-auto">
+              <div id="pwd-container" class="pwd-container">
+
+                <div class="is-word-break-all">
                   <div id="pwd-generated" class="pwd-generated"></div>
                 </div>
-                <div class="actions">
-                  <div id="action-redo" class="action redo is-clickable">
-                    <i class="fas fa-redo-alt"></i>
-                  </div>
-                  <div id="action-copy-to-clipboard" class="action clipboard is-clickable">
-                    <i class="fas fa-clipboard"></i>
-                  </div>
-                </div>
+              </div>
+
+
+            </div>
+            <div id="pwd-actions-box">
+              <div id="action-redo"
+                class="action redo is-clickable is-flex is-flex-direction-row is-align-items-center">
+                <i class="fas fa-redo-alt"></i><span class="is-size-7">Refresh</span>
+              </div>
+              <div id="action-copy-to-clipboard"
+                class="action clipboard is-clickable is-flex is-flex-direction-row is-align-items-center">
+                <i class="fas fa-clipboard"></i><span class="is-size-7">Copy</span>
               </div>
             </div>
-            <div id="pwd-strength-tagbox"><span id="pwd-strength-tag" class="is-size-7 px-3">strong</span>
-            </div>
+            <div id="pwd-strength-tagbox"><span id="pwd-strength-tag" class="is-size-7 px-3">strong</span></div>
             <progress id="pwd-strength" class="progress" value="100" max="100"></progress>
           </section>
-          <div class="box">
-            <h4 class="subtitle is-4"><i class="fas fa-cog"></i> Settings</h4>
-            <div class="columns is-vcentered">
-              <div class="column">Password Length</div>
-              <div class="column">
 
-                <div class="columns is-vcentered">
-                  <div class="column">
-                    <input id="settings-password-length" class="input" type="number" name="settings-password-length"
-                      min="4" max="56" value="16" step="8" class="setting-element" />
-                  </div>
-                  <div class="column is-three-fifths">
-                    <input id="settings-password-length-range" type="range" name="settings-password-length-range"
-                      min="4" max="56" value="16" step="1" class="setting-element" />
+          <div id="pwd-type-selector-tab" class="tabs is-fullwidth">
+            <ul>
+              <li class="is-active"><a data-type="password">Password</a></li>
+              <li><a data-type="passphrase">Passphrase</a></li>
+            </ul>
+          </div>
+
+          <div id="pwd-settings-box" class="box">
+            <h4 class="subtitle is-4">
+              <i class="fas fa-cog"></i> Settings
+            </h4>
+
+            <div id="passphrase-settings" class="settings is-hidden">
+              <div class="columns is-vcentered">
+                <div class="column">Words</div>
+                <div class="column">
+                  <div class="columns is-vcentered">
+                    <div class="column">
+                      <input id="settings-passphrase-length" class="input" type="number"
+                        name="settings-passphrase-length" min="1" max="10" value="4" class="setting-element"
+                        placeholder="4" />
+                    </div>
+                    <div class="column is-three-fifths">
+                      <input id="settings-passphrase-length-range" type="range" name="settings-passphrase-length-range"
+                        min="1" max="10" value="4" step="1" class="setting-element" />
+                    </div>
                   </div>
                 </div>
+              </div>
 
+              <div class="columns is-vcentered">
+                <div class="column">Separator</div>
+                <div class="column">
+                  <div class="columns is-vcentered">
+                    <div class="column">
+                      <input id="settings-passphrase-separator" class="input" type="text"
+                        name="settings-passphrase-separator" min="1" max="1" value="-" class="setting-element"
+                        placeholder="-" />
+                    </div>
+                    <div class="column is-three-fifths"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="columns">
+                <div class="column py-1">
+                  <label class="checkbox">
+                    <input id="settings-passphrase-include-numbers" type="checkbox" class="setting-element" />
+                    <span class="toggle"></span>
+                    Include Numbers (0-9)
+                  </label>
+                </div>
+              </div>
+              <div class="columns">
+                <div class="column py-1">
+                  <label class="checkbox">
+                    <input id="settings-passphrase-capitalize" type="checkbox" class="setting-element" />
+                    <span class="toggle"></span>
+                    Capitalize
+                  </label>
+                </div>
               </div>
             </div>
 
-            <div class="columns is-gapless">
-              <div class="column is-4">
-                <label class="radio has-text-weight-bold has-background-light p-4 is-fullwidth">
-                  <input type="radio" class="setting-pwd-mode" name="pwd-mode" value="all-characters" checked />
-                  All characters
-                </label>
-              </div>
-              <div class="column is-4">
-                <label class="radio has-text-weight-bold has-background-light p-4 is-fullwidth">
-                  <input type="radio" class="setting-pwd-mode" name="pwd-mode" value="easy-to-read" />
-                  Easy to read
-                </label>
-              </div>
-              <div class="column is-4">
-                <label class="radio has-text-weight-bold has-background-light p-4 is-fullwidth">
-                  <input type="radio" class="setting-pwd-mode" name="pwd-mode" value="easy-to-say" />
-                  Easy to say
-                </label>
-              </div>
-            </div>
+            <div id="password-settings" class="settings">
+              <div class="columns is-vcentered">
+                <div class="column">Password Length</div>
+                <div class="column">
 
-            <div class="columns">
-              <div class="column py-1">
-                <label class="checkbox">
-                  <input id="settings-allow-numbers" type="checkbox" class="setting-element" checked />
-                  <span class="toggle"></span>
-                  Allow Numbers (0-9)
-                </label>
+                  <div class="columns is-vcentered">
+                    <div class="column">
+                      <input id="settings-password-length" class="input" type="number" name="settings-password-length"
+                        min="1" max="256" value="16" placeholder="16" class="setting-element" />
+                    </div>
+                    <div class="column is-three-fifths">
+                      <input id="settings-password-length-range" type="range" name="settings-password-length-range"
+                        min="1" max="256" value="16" step="1" class="setting-element" />
+                    </div>
+                  </div>
+
+                </div>
               </div>
-            </div>
-            <div class="columns">
-              <div class="column py-1">
-                <label class="checkbox">
-                  <input id="settings-allow-uppercase" type="checkbox" class="setting-element" checked />
-                  <span class="toggle"></span>
-                  Allow Uppercase (ABC)
-                </label>
+
+              <div class="columns is-gapless">
+                <div class="column is-4">
+                  <label class="radio has-text-weight-bold has-background-light p-4 is-fullwidth">
+                    <input type="radio" class="setting-pwd-mode" name="pwd-mode" value="all-characters" checked />
+                    All characters
+                  </label>
+                </div>
+                <div class="column is-4">
+                  <label class="radio has-text-weight-bold has-background-light p-4 is-fullwidth">
+                    <input type="radio" class="setting-pwd-mode" name="pwd-mode" value="easy-to-read" />
+                    Easy to read
+                  </label>
+                </div>
+                <div class="column is-4">
+                  <label class="radio has-text-weight-bold has-background-light p-4 is-fullwidth">
+                    <input type="radio" class="setting-pwd-mode" name="pwd-mode" value="easy-to-say" />
+                    Easy to say
+                  </label>
+                </div>
               </div>
-            </div>
-            <div class="columns">
-              <div class="column py-1">
-                <label class="checkbox">
-                  <input id="settings-allow-lowercase" type="checkbox" class="setting-element" checked />
-                  <span class="toggle"></span>
-                  Allow Lowercase (abc)
-                </label>
+
+              <div class="columns">
+                <div class="column py-1">
+                  <label class="checkbox">
+                    <input id="settings-allow-numbers" type="checkbox" class="setting-element" checked />
+                    <span class="toggle"></span>
+                    Allow Numbers (0-9)
+                  </label>
+                </div>
               </div>
-            </div>
-            <div class="columns">
-              <div class="column py-1">
-                <label class="checkbox">
-                  <input id="settings-allow-symbols" type="checkbox" class="setting-element" checked />
-                  <span class="toggle"></span>
-                  Allow Symbols (<span id="settings-allow-symbols-list"></span>)
-                </label>
+              <div class="columns">
+                <div class="column py-1">
+                  <label class="checkbox">
+                    <input id="settings-allow-uppercase" type="checkbox" class="setting-element" checked />
+                    <span class="toggle"></span>
+                    Allow Uppercase (ABC)
+                  </label>
+                </div>
               </div>
-            </div>
-            <div class="columns">
-              <div class="column py-1">
-                <label class="checkbox">
-                  <input id="settings-exclude-duplicate-characters" type="checkbox" class="setting-element" />
-                  <span class="toggle"></span>
-                  Exclude Duplicate Characters
-                </label>
+              <div class="columns">
+                <div class="column py-1">
+                  <label class="checkbox">
+                    <input id="settings-allow-lowercase" type="checkbox" class="setting-element" checked />
+                    <span class="toggle"></span>
+                    Allow Lowercase (abc)
+                  </label>
+                </div>
               </div>
-            </div>
-            <div class="columns">
-              <div class="column py-1">
-                <label class="checkbox">
-                  <input id="settings-exclude-similar-characters" type="checkbox" class="setting-element" />
-                  <span class="toggle"></span>
-                  Exclude Similar (iI1loO0)
-                </label>
+              <div class="columns">
+                <div class="column py-1">
+                  <label class="checkbox">
+                    <input id="settings-allow-symbols" type="checkbox" class="setting-element" checked />
+                    <span class="toggle"></span>
+                    Allow Symbols (<span id="settings-allow-symbols-list"></span>)
+                  </label>
+                </div>
+              </div>
+              <div class="columns">
+                <div class="column py-1">
+                  <label class="checkbox">
+                    <input id="settings-exclude-duplicate-characters" type="checkbox" class="setting-element" />
+                    <span class="toggle"></span>
+                    Exclude Duplicate Characters
+                  </label>
+                </div>
+              </div>
+              <div class="columns">
+                <div class="column py-1">
+                  <label class="checkbox">
+                    <input id="settings-exclude-similar-characters" type="checkbox" class="setting-element" />
+                    <span class="toggle"></span>
+                    Exclude Similar (iI1loO0)
+                  </label>
+                </div>
               </div>
             </div>
           </div>
