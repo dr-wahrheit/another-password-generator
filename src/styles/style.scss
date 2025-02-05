@@ -3,6 +3,8 @@
 $secondaryColor: #a89d91;
 $primaryColor: #485fc7;
 $backgroundColor: #ffffff;
+$backgroundColorLight: #f5f5f5;
+
 
 $textColor: #444;
 $linkColor: $primaryColor;
@@ -49,6 +51,23 @@ body {
 	background-color: $backgroundColor;
 	scroll-behavior: smooth;
 	scroll-snap-type: y mandatory;
+
+	// &.is-success {
+	// 	#pwd-type-selector-tab li.is-active a {
+	// 		color: $colorSuccess;
+	// 		border-bottom-color: $colorSuccess;
+
+	// 		&:hover {
+	// 			border-bottom-color: $colorSuccess;
+	// 		}
+	// 	}
+
+	// 	.pwd-container {
+	// 		&::selection {
+	// 			background-color: var(--selection-color-success);
+	// 		}
+	// 	}
+	// }
 }
 
 .title,
@@ -205,12 +224,102 @@ body {
 	}
 }
 
+// ---
+	
+  // ---
+
+
+
+
 #settings-password-length {
 	width: 64px;
 }
-#settings-password-length-range {
-	width: 100%;
-}
+// #settings-password-length-range {
+// 	width: 100%;
+	
+// 	// // height: 8px;
+// 	// // background: linear-gradient(to right, #ff5733 0%, #ffc300 50%, #33ff57 100%);
+// 	// border-radius: 4px;
+// 	// outline: none;
+
+// 	-webkit-appearance: none; /* Rimuove lo stile di default su WebKit */
+// 	appearance: none;
+// 	// width: 100%;
+// 	// // height: 8px;
+// 	// background: #ddd; /* Colore della barra */
+	
+// 	// outline: none;
+// 	// opacity: 0.9;
+// 	// transition: opacity 0.2s;
+	  
+// 	  &:hover {
+// 		opacity: 1;
+// 	  }
+	  
+// 	  /* Stile del cursore per Chrome, Safari, Edge */
+// 	  &::-webkit-slider-thumb {
+// 		-webkit-appearance: none;
+// 		appearance: none;
+// 		margin-top: -5px;
+// 		width: 10px;
+// 		height: 20px;
+// 		background: $secondaryColor; /* Colore del cursore */
+// 		border-radius: 50%;
+// 		cursor: pointer;
+// 	  }
+	  
+// 	  /* Stile della barra per Chrome, Safari, Edge */
+// 	  &::-webkit-slider-runnable-track {
+// 		// background: #ddd;
+// 		background: $backgroundColorLight; //linear-gradient(to right, $colorDanger 0%, $colorWarning 3.5%, $colorInfo 4.29%, $colorSuccess 6.25%);
+// 		height: 8px;
+// 		border-radius: 10px;
+// 	  }
+
+// 	  &.is-success {
+// 		&::-webkit-slider-runnable-track {
+// 			background: $colorSuccess;
+// 			height: 8px;
+// 			border-radius: 10px;
+// 		  }
+// 	  }
+// 	  &.is-danger {
+// 		&::-webkit-slider-runnable-track {
+// 			background: $colorDanger;
+// 			height: 8px;
+// 			border-radius: 10px;
+// 		  }
+// 	  }
+// 	  &.is-warning {
+// 		&::-webkit-slider-runnable-track {
+// 			background: $colorWarning;
+// 			height: 8px;
+// 			border-radius: 10px;
+// 		  }
+// 	  }
+// 	  &.is-info {
+// 		&::-webkit-slider-runnable-track {
+// 			background: $colorInfo;
+// 			height: 8px;
+// 			border-radius: 10px;
+// 		  }
+// 	  }
+	  
+// 	//   /* Stile per Firefox */
+// 	//   &::-moz-range-thumb {
+// 	// 	width: 10px;
+// 	// 	height: 10px;
+// 	// 	background: #007bff;
+// 	// 	border-radius: 50%;
+// 	// 	cursor: pointer;
+// 	//   }
+	  
+// 	//   &::-moz-range-track {
+// 	// 	background: #ddd;
+// 	// 	height: 8px;
+// 	// 	border-radius: 4px;
+// 	//   }
+// }
 
 .settings-container {
 	background-color: $secondaryColor;

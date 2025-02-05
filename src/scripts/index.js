@@ -21,6 +21,7 @@ import Passphrase, { PASSPHRASE_WORDLIST } from './genearators/passphrase'
 
 let availableChars = [];
 
+const bodydEl = document.getElementsByTagName('body')[0];
 const pwdGeneratedEl = document.getElementById('pwd-generated');
 const notificationEl = document.getElementById('notification');
 const actionRedoEl = document.getElementById('action-redo');
@@ -168,6 +169,12 @@ function updatePasswordSettings() {
 }
 
 function setStrength(strength) {
+  bodydEl.classList.remove(
+    'is-danger',
+    'is-warning',
+    'is-info',
+    'is-success',
+  );
   pwdGeneratedStrengthEl.classList.remove(
     'is-danger',
     'is-warning',
@@ -175,6 +182,12 @@ function setStrength(strength) {
     'is-success',
   );
   pwdContainerEl.classList.remove(
+    'is-danger',
+    'is-warning',
+    'is-info',
+    'is-success',
+  );
+  settingsPasswordLengthRangeEl.classList.remove(
     'is-danger',
     'is-warning',
     'is-info',
@@ -192,27 +205,40 @@ function setStrength(strength) {
   );
 
   if (strength < 28) {
-    pwdContainerEl.classList.add('is-danger'); // Molto debole
-    pwdGeneratedStrengthEl.classList.add('is-danger'); // Molto debole
-    pwdGeneratedStrengthTagBoxEl.classList.add('has-background-danger', 'has-text-danger-light'); // Molto debole
+    // Molto debole
+    bodydEl.classList.add('is-danger');
+    pwdContainerEl.classList.add('is-danger');
+    pwdGeneratedStrengthEl.classList.add('is-danger');
+    settingsPasswordLengthRangeEl.classList.add('is-danger');
+    pwdGeneratedStrengthTagBoxEl.classList.add('has-background-danger', 'has-text-danger-light');
     pwdGeneratedStrengthTagEl.innerText = 'Too easy to guess';
   } else if (strength < 36) {
-    pwdContainerEl.classList.add('is-warning'); // Debole
-    pwdGeneratedStrengthEl.classList.add('is-warning'); // Debole
-    pwdGeneratedStrengthTagBoxEl.classList.add('has-background-warning', 'has-text-warning-dark'); // Debole
+    // Debole
+    bodydEl.classList.add('is-warning');
+    pwdContainerEl.classList.add('is-warning');
+    pwdGeneratedStrengthEl.classList.add('is-warning');
+    settingsPasswordLengthRangeEl.classList.add('is-warning');
+    pwdGeneratedStrengthTagBoxEl.classList.add('has-background-warning', 'has-text-warning-dark');
     pwdGeneratedStrengthTagEl.innerText = 'At risk of being compromised';
 
   } else if (strength < 60) {
-    pwdContainerEl.classList.add('is-info'); // Buona
-    pwdGeneratedStrengthEl.classList.add('is-info'); // Buona
-    pwdGeneratedStrengthTagBoxEl.classList.add('has-background-info', 'has-text-info-light'); // Buona
+    // Buona
+    bodydEl.classList.add('is-info');
+    pwdContainerEl.classList.add('is-info');
+    pwdGeneratedStrengthEl.classList.add('is-info');
+    settingsPasswordLengthRangeEl.classList.add('is-info');
+    pwdGeneratedStrengthTagBoxEl.classList.add('has-background-info', 'has-text-info-light');
     pwdGeneratedStrengthTagEl.innerText = 'Secure for normal use';
 
   } else {
-    pwdContainerEl.classList.add('is-success'); // Molto sicura
-    pwdGeneratedStrengthEl.classList.add('is-success'); // Molto sicura
-    pwdGeneratedStrengthTagBoxEl.classList.add('has-background-success', 'has-text-success-light'); // Molto sicura
+    // Molto sicura
+    bodydEl.classList.add('is-success');
+    pwdContainerEl.classList.add('is-success');
+    pwdGeneratedStrengthEl.classList.add('is-success');
+    settingsPasswordLengthRangeEl.classList.add('is-success');
+    pwdGeneratedStrengthTagBoxEl.classList.add('has-background-success', 'has-text-success-light');
     pwdGeneratedStrengthTagEl.innerText = 'Protects against hacking attempts';
+
   }
 }
 
