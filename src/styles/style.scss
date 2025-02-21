@@ -274,6 +274,52 @@ body {
     }
 }
 
+#settings-passphrase-length-range {
+    width: 100%;
+    /* Rimuove lo stile di default su WebKit */
+    -webkit-appearance: none;
+    appearance: none;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    /* Stile del cursore per Chrome, Safari, Edge */
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        margin-top: -5px;
+        width: 10px;
+        height: 20px;
+        background: $textColor;
+        /* Colore del cursore */
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    /* Stile della barra per Chrome, Safari, Edge */
+    &::-webkit-slider-runnable-track {
+        background: var(--active-color);
+        height: 8px;
+        border-radius: 10px;
+    }
+
+    //   /* Stile per Firefox */
+    &::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: var(--active-color);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    &::-moz-range-track {
+        background: var(--active-color);
+        height: 8px;
+        border-radius: 10px;
+    }
+}
+
 .settings-container {
     background-color: var(--active-color);
     color: $backgroundColor;
