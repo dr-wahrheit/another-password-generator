@@ -5,10 +5,11 @@ get_version() {
 }
 
 update_version() {
-    VERSION=$(get_version)
-    NEW_VERSION=$(echo $VERSION | awk -F. -v OFS=. '{$NF++; print}')
-    sed -i "s/\"version\": \"$VERSION\"/\"version\": \"$NEW_VERSION\"/" package.json
-    echo "Version updated to $NEW_VERSION"
+    # VERSION=$(get_version)
+    # NEW_VERSION=$(echo $VERSION | awk -F. -v OFS=. '{$NF++; print}')
+    # sed -i "s/\"version\": \"$VERSION\"/\"version\": \"$NEW_VERSION\"/" package.json
+    # echo "Version updated to $NEW_VERSION"
+     npm version patch
 }
 
 build() {
