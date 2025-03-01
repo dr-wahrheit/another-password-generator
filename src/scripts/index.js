@@ -6,9 +6,9 @@ const sitemap = require('../../sitemap.xml');
 const robots = require('../../robots.txt');
 
 // load images
-// import faviconIco from '../images/favicon.ico';
-// import faviconImage from '../images/favicon.png';
-// import shareImage from '../images/share.png';
+import '../images/favicon.ico';
+import '../images/favicon.png';
+import '../images/share.png';
 
 import Password, {
   NUMBERS,
