@@ -13,16 +13,7 @@ $colorWarning: #ffe08a;
 $colorInfo: #3e8ed0;
 $colorSuccess: #48c78e;
 
-
 :root {
-    // --bulma-primary-h: 172deg;
-    // --bulma-link-h: 229deg;
-    // --bulma-link-s: 53%;
-    // --bulma-link-l: 53%;
-    // --bulma-info-h: 199deg;
-    // --bulma-success-h: 154deg;
-    // --bulma-warning-h: 43deg;
-    // --bulma-danger-h: 349deg;
     --selection-color-danger: #f14668;
     --selection-color-warning: #ffe08a;
     --selection-color-info: #3e8ed0;
@@ -258,7 +249,7 @@ body {
         border-radius: 10px;
     }
 
-    //   /* Stile per Firefox */
+    /* Stile per Firefox */
     &::-moz-range-thumb {
         width: 20px;
         height: 20px;
@@ -304,7 +295,7 @@ body {
         border-radius: 10px;
     }
 
-    //   /* Stile per Firefox */
+    /* Stile per Firefox */
     &::-moz-range-thumb {
         width: 20px;
         height: 20px;
@@ -326,7 +317,6 @@ body {
     border-radius: 10px;
     border: 2px solid var(--active-color);
     padding: 1rem;
-    // box-shadow: 0 2px 10px var(--active-color);
 
     ::selection {
         color: $backgroundColor;
@@ -337,7 +327,6 @@ body {
     .checkbox:hover,
     .radio:hover {
         color: $textColor;
-        // text-shadow: 0 0 5px $backgroundColor;
     }
 }
 
@@ -386,8 +375,6 @@ input {
 
     &[type=radio] {
         &:checked {
-            // accent-color: var(--active-color);
-            // border: none;
             border-color: var(--active-color);
         }
 

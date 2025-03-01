@@ -114,7 +114,10 @@ async function copyToClipboard() {
 
 function createPassword() {
   if (availableChars.size === 0) {
-    return '';
+    return {
+      password: '',
+      strength: 0,
+    };
   }
   const passwordLength = getPasswordLength();
   const generator = new Password(availableChars, passwordLength);
