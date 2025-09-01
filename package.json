@@ -1,6 +1,6 @@
 {
   "name": "another-password-generator",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Another Password Generator is a simple, secure web application that generates strong, unique passwords for all your online accounts.",
   "private": true,
   "packageManager": "yarn@4.1.0",
