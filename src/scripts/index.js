@@ -35,6 +35,7 @@ const settingsPassphraseLengthEl = document.getElementById('settings-passphrase-
 const pwdGeneratedStrengthEl = document.getElementById('pwd-strength');
 const pwdGeneratedStrengthTagBoxEl = document.getElementById('pwd-strength-tagbox');
 const pwdGeneratedStrengthTagEl = document.getElementById('pwd-strength-tag');
+const pwdGeneratedStrengthCracktimeEl = document.getElementById('pwd-strength-cracktime');
 const settingsAllowNumbersEl = document.getElementById('settings-allow-numbers');
 const settingsPassphraseCapitalizeEl = document.getElementById('settings-passphrase-capitalize');
 const settingsPassphraseIncludeNumbersEl = document.getElementById('settings-passphrase-include-numbers');
@@ -210,9 +211,9 @@ function setStrength(strength) {
     'has-text-success-light'
   );
 
-  const score = strength.score;
-  const feedback = strength.feedback;
-  console.log(strength)
+  const { score, crackTime, feedback } = strength;
+
+  pwdGeneratedStrengthCracktimeEl.innerHTML = crackTime;
 
   if (score === 0 || score === 1) {
     // Molto debole
