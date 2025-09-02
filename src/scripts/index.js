@@ -210,24 +210,27 @@ function setStrength(strength) {
     'has-text-success-light'
   );
 
-  if (strength < 28) {
+  const score = strength.score;
+  const feedback = strength.feedback;
+  console.log(strength)
+
+  if (score === 0 || score === 1) {
     // Molto debole
     bodydEl.classList.add('is-danger');
     pwdContainerEl.classList.add('is-danger');
     pwdGeneratedStrengthEl.classList.add('is-danger');
     settingsPasswordLengthRangeEl.classList.add('is-danger');
     pwdGeneratedStrengthTagBoxEl.classList.add('has-background-danger', 'has-text-danger-light');
-    pwdGeneratedStrengthTagEl.innerText = 'Too easy to guess';
-  } else if (strength < 36) {
+    pwdGeneratedStrengthTagEl.innerText = feedback.warning || 'Too easy to guess';
+  } else if (score === 2) {
     // Debole
     bodydEl.classList.add('is-warning');
     pwdContainerEl.classList.add('is-warning');
     pwdGeneratedStrengthEl.classList.add('is-warning');
     settingsPasswordLengthRangeEl.classList.add('is-warning');
     pwdGeneratedStrengthTagBoxEl.classList.add('has-background-warning', 'has-text-warning-dark');
-    pwdGeneratedStrengthTagEl.innerText = 'At risk of being compromised';
-
-  } else if (strength < 60) {
+    pwdGeneratedStrengthTagEl.innerText = feedback.warning || 'At risk of being compromised';
+  } else if (score === 3) {
     // Buona
     bodydEl.classList.add('is-info');
     pwdContainerEl.classList.add('is-info');
@@ -235,16 +238,14 @@ function setStrength(strength) {
     settingsPasswordLengthRangeEl.classList.add('is-info');
     pwdGeneratedStrengthTagBoxEl.classList.add('has-background-info', 'has-text-info-light');
     pwdGeneratedStrengthTagEl.innerText = 'Secure for normal use';
-
   } else {
-    // Molto sicura
+    // Molto sicura (score === 4)
     bodydEl.classList.add('is-success');
     pwdContainerEl.classList.add('is-success');
     pwdGeneratedStrengthEl.classList.add('is-success');
     settingsPasswordLengthRangeEl.classList.add('is-success');
     pwdGeneratedStrengthTagBoxEl.classList.add('has-background-success', 'has-text-success-light');
     pwdGeneratedStrengthTagEl.innerText = 'Protects against hacking attempts';
-
   }
 }
 

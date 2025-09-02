@@ -1,3 +1,5 @@
+import { calculateStrength } from '../strength.js';
+
 export default class Passphrase {
     constructor(wordList, wordCount = 4, separator = '-', includeNumbers = false, capitalize = false) {
         this.wordList = wordList;
@@ -21,9 +23,11 @@ export default class Passphrase {
             passphrase.push(Math.floor(Math.random() * 100));
         }
 
+        const passphraseString = passphrase.join(this.separator);
+
         return {
-            passphrase: passphrase.join(this.separator),
-            strength: this.#getStrength(),
+            passphrase: passphraseString,
+            strength: calculateStrength(passphraseString),
         }
     }
 
@@ -32,12 +36,5 @@ export default class Passphrase {
             .split('')
             .map(char => (Math.random() < 0.5 ? char.toUpperCase() : char))
             .join('');
-    }
-
-    #getStrength() {
-        let entropy = this.wordCount * Math.log2(this.wordList.length);
-        if (this.includeNumbers) entropy += Math.log2(100);
-        if (this.capitalize) entropy += this.wordCount * 1.5; // Approximate extra entropy from capitalization
-        return entropy;
     }
 }

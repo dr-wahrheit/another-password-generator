@@ -1,3 +1,5 @@
+import { calculateStrength } from '../strength.js';
+
 export default class Password {
     constructor(availableChars, passwordLength) {
         this.availableChars = availableChars;
@@ -18,15 +20,7 @@ export default class Password {
 
         return {
             password,
-            strength: this.#calculateStrength(password),
+            strength: calculateStrength(password),
         }
-
-    }
-
-    #calculateStrength(password) {
-        const uniqueChars = new Set(password).size;
-        const entropy = password.length * Math.log2(uniqueChars);
-        return entropy.toFixed(2);
-
     }
 }

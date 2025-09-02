@@ -3,7 +3,6 @@
   "version": "0.0.19",
   "description": "Another Password Generator is a simple, secure web application that generates strong, unique passwords for all your online accounts.",
   "private": true,
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
@@ -39,5 +38,7 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "zxcvbn": "^4.4.2"
+  }
 }
