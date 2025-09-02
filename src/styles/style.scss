@@ -410,3 +410,173 @@ input {
         transition: all 0.4s ease-in-out;
     }
 }
+
+
+.faq-accordion details {
+    border: 1px solid #eee;
+    border-radius: .5rem;
+    padding: .75rem 1rem;
+    margin: .5rem 0;
+}
+
+.faq-accordion summary {
+    cursor: pointer;
+    outline: none;
+}
+
+.faq-accordion details[open] {
+    background: #fafafa;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .faq-accordion details {
+        transition: background 160ms ease, border-color 160ms ease;
+    }
+}
+
+/* =============================
+   Micro Animations (UX spice)
+   ============================= */
+
+/* Pulsanti: feedback tattile */
+.action {
+    will-change: transform, filter;
+    transition: transform 120ms ease, filter 120ms ease;
+}
+
+.action:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+/* Copy → micro “pop” */
+#action-copy-to-clipboard.copied {
+    animation: apg-pop 260ms ease;
+}
+
+@keyframes apg-pop {
+    0% {
+        transform: scale(.96);
+    }
+
+    60% {
+        transform: scale(1.04);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Refresh → rotazione con leggero “shake” */
+#action-redo.spin i {
+    animation: apg-spinshake 420ms cubic-bezier(.2, .8, .2, 1);
+}
+
+@keyframes apg-spinshake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    35% {
+        transform: rotate(-18deg);
+    }
+
+    70% {
+        transform: rotate(375deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Barra forza: easing sul riempimento */
+#pwd-strength {
+    overflow: hidden;
+}
+
+#pwd-strength::-webkit-progress-value {
+    transition: width 300ms ease;
+}
+
+#pwd-strength::-moz-progress-bar {
+    transition: width 300ms ease;
+}
+
+/* Accordion FAQ (details/summary) */
+.faq-accordion details {
+    border: 1px solid #ececec;
+    border-radius: .5rem;
+    padding: .75rem 1rem;
+    margin: .5rem 0;
+    background: #fff;
+}
+
+.faq-accordion summary {
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding-right: 1.5rem;
+    user-select: none;
+}
+
+.faq-accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-accordion summary::after {
+    content: '›';
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-weight: 700;
+    transform: rotate(0deg);
+    transition: transform 160ms ease;
+}
+
+.faq-accordion details[open] summary::after {
+    transform: rotate(90deg);
+}
+
+/* Slide-fade sui contenuti dell’accordion */
+.faq-accordion details>*:not(summary) {
+    opacity: 0;
+    transform: translateY(-4px);
+}
+
+.faq-accordion details[open]>*:not(summary) {
+    animation: apg-accord-in 180ms ease forwards;
+}
+
+@keyframes apg-accord-in {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Rispetto prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0.001ms !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+/* Nasconde il marker predefinito del <summary> in tutti i browser */
+.faq-accordion summary {
+    list-style: none;
+    /* Firefox */
+}
+
+.faq-accordion summary::marker {
+    content: "";
+    /* Safari/Chromium moderni */
+}
+
+/* Ce l’avevamo già, ma lo lascio per completezza su WebKit */
+.faq-accordion summary::-webkit-details-marker {
+    display: none;
+    /* Chrome/Safari/Edge */
+}

@@ -48,10 +48,40 @@
     {"@type":"Question","name":"Do you store my passwords?",
      "acceptedAnswer":{"@type":"Answer","text":"No. Nothing is logged or transmitted. Optionally, the app works offline as a PWA."}},
     {"@type":"Question","name":"What is a passphrase?",
-     "acceptedAnswer":{"@type":"Answer","text":"A sequence of random words (diceware-style) that’s easier to remember and highly secure."}}
+     "acceptedAnswer":{"@type":"Answer","text":"A sequence of random words (diceware-style) that’s easier to remember and highly secure."}},
+    {"@type":"Question","name":"Why does password complexity matter?",
+     "acceptedAnswer":{"@type":"Answer","text":"Complex passwords dramatically increase the search space, making brute-force attacks computationally expensive."}},
+    {"@type":"Question","name":"What kind of data am I protecting with strong passwords?",
+     "acceptedAnswer":{"@type":"Answer","text":"From personal photos to financial info, strong passwords help keep everything secure."}},
+    {"@type":"Question","name":"How do weak passwords lead to identity theft?",
+     "acceptedAnswer":{"@type":"Answer","text":"Reused or guessable passwords let attackers pivot across services and impersonate you."}},
+    {"@type":"Question","name":"How do strong passwords keep me in control of my accounts?",
+     "acceptedAnswer":{"@type":"Answer","text":"With strong, unique passwords and a password manager, only you decide who accesses your accounts."}},
+    {"@type":"Question","name":"Is a weak password like a cheap padlock?",
+     "acceptedAnswer":{"@type":"Answer","text":"Yes. A weak password is as ineffective as a flimsy lock—choose strength and stay safe."}}
   ]
 }
 </script>
+
+  <script>
+    (function () {
+      const redo = document.getElementById('action-redo');
+      const copy = document.getElementById('action-copy-to-clipboard');
+
+      if (redo) {
+        redo.addEventListener('click', () => {
+          redo.classList.add('spin');
+          setTimeout(() => redo.classList.remove('spin'), 480);
+        });
+      }
+      if (copy) {
+        copy.addEventListener('click', () => {
+          copy.classList.add('copied');
+          setTimeout(() => copy.classList.remove('copied'), 320);
+        });
+      }
+    })();
+  </script>
 
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.cookie-script.com https://www.clarity.ms https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com;">
@@ -61,25 +91,12 @@
   <meta name="theme-color" content="#222222" />
   <script type="text/javascript" charset="UTF-8"
     src="https://cdn.cookie-script.com/s/2d57038b0f2ca896ea0cdd9216ae0643.js"></script>
-  <script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "lezleveger");
-  </script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7JCSSW3HJK"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+  <!-- 100% privacy-first analytics -->
+  <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 
-    gtag('config', 'G-7JCSSW3HJK');
-  </script>
 </head>
 
-<body>
+<body class="is-invisible">
   <noscript>
     <style>
       body {
@@ -291,23 +308,29 @@
             <h1><i class="las la-key"></i> Secure Password Generator</h1>
             <p class="lead">Stronger passwords, one click away.</p>
             <h3 class="">Why Secure Passwords Matter?</h3>
-            <p>Your passwords are the keys to your online life. Weak passwords—like "password123" or "qwerty"—are
-              incredibly easy to crack, putting your personal data at risk. A strong password is your first line of
-              defense.</p>
-
-            <h3><i class="las la-search"></i> Why Does This Matter?</h3>
-            <ul>
-              <li><strong>Keep Hackers Out</strong> – Complex passwords take years to crack, keeping your accounts
-                safe.</li>
-              <li><strong>Protect Your Data</strong> – From personal photos to financial info, strong passwords keep
-                everything secure.</li>
-              <li><strong>Prevent Identity Theft</strong> – Weak passwords make you an easy target for fraud.</li>
-              <li><strong>Stay in Control</strong> – With secure passwords, only <em>you</em> decide who accesses
-                your accounts.</li>
-            </ul>
-
-            <p><strong>Think of it this way:</strong> Would you use a cheap padlock to protect your valuables? A weak
-              password is just as useless. Choose strength. Stay safe.</p>
+            <div class="faq-accordion">
+              <details>
+                <summary><strong>Keep Hackers Out</strong> – Why does complexity matter?</summary>
+                <p>Complex passwords dramatically increase the search space, making brute-force attacks computationally
+                  expensive.</p>
+              </details>
+              <details>
+                <summary><strong>Protect Your Data</strong> – What am I protecting?</summary>
+                <p>From personal photos to financial info, strong passwords keep everything secure.</p>
+              </details>
+              <details>
+                <summary><strong>Prevent Identity Theft</strong> – How do weak passwords expose me?</summary>
+                <p>Reused or guessable passwords let attackers pivot across services and impersonate you.</p>
+              </details>
+              <details>
+                <summary><strong>Stay in Control</strong> – Who can access my accounts?</summary>
+                <p>With strong, unique passwords, only you decide who accesses your accounts.</p>
+              </details>
+              <details>
+                <summary><strong>Quick analogy</strong> – Is a weak password like a cheap padlock?</summary>
+                <p>Exactly. A weak password is as useless as a flimsy lock. Choose strength. Stay safe.</p>
+              </details>
+            </div>
 
             <h3><i class="las la-thumbtack"></i> Best Practices for Strong Passwords:</h3>
             <ul>
