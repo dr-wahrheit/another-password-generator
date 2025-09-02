@@ -106,6 +106,9 @@ function showNotification() {
 async function copyToClipboard() {
   try {
     await navigator.clipboard.writeText(pwdGeneratedEl.innerText);
+    if (window.sa_loaded) {
+      window.sa_event("password_copied");
+    }
     showNotification();
   } catch (err) {
     console.error('Error copying text: ', err);
