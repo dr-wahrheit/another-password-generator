@@ -324,7 +324,8 @@ function writeWellcomeMessage() {
 }
 
 function displayPage() {
-  document.body.style = 'display: auto';
+  // document.body.style = 'display: auto';
+  document.body.classList.remove('is-invisible')
 }
 
 function handlePasswordCreation() {
