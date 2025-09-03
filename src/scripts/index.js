@@ -101,7 +101,7 @@ function showNotification() {
   notificationEl.classList.remove('is-invisible');
   setTimeout(() => {
     notificationEl.classList.add('is-invisible');
-  }, 10000);
+  }, 5000);
 }
 
 async function copyToClipboard() {
@@ -268,6 +268,19 @@ function togglePwdType(event) {
   handlePasswordCreation();
 }
 
+// Funzione che riavvia le animazioni in modo affidabile
+function highlightGeneratedPassword() {
+  pwdGeneratedEl.classList.remove('is-blink');
+  // forza un reflow per ri-triggerare le animazioni
+  void pwdGeneratedEl.offsetWidth;
+  pwdGeneratedEl.classList.add('is-blink');
+
+  // ripristina lo stato finale (riporta il colore normale)
+  pwdGeneratedEl.addEventListener('animationend', () => {
+    pwdGeneratedEl.classList.remove('is-blink');
+  }, { once: true });
+}
+
 function bindEvents() {
   settingsPasswordLengthRangeEl.addEventListener('input', () => {
     settingsPasswordLengthEl.value = settingsPasswordLengthRangeEl.value;
@@ -317,6 +330,18 @@ function bindEvents() {
   document.querySelectorAll('#pwd-type-selector-tab li a').forEach((el) => {
     el.addEventListener('click', togglePwdType);
   });
+
+  // 1) Trigger su cambio contenuto (qualsiasi cosa scriva il generatore)
+  let last = '';
+  const mo = new MutationObserver(() => {
+    const t = pwdGeneratedEl.textContent || '';
+    if (t && t !== last) { last = t; highlightGeneratedPassword(); }
+  });
+  mo.observe(pwdGeneratedEl, { childList: true, characterData: true, subtree: true });
+
+  // 2) Trigger anche al click su Refresh (bonus)
+  // const redo = document.getElementById('action-redo');
+  actionRedoEl.addEventListener('click', highlightGeneratedPassword);
 }
 
 function writeWellcomeMessage() {
@@ -329,7 +354,7 @@ function writeWellcomeMessage() {
 }
 
 function displayPage() {
-  // document.body.style = 'display: auto';
+  document.body.style = 'display: auto';
   document.body.classList.remove('is-invisible')
 }
 

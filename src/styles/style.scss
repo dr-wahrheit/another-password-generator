@@ -600,3 +600,49 @@ input {
         width: 100%;
     }
 }
+
+
+/* ===== Blink del testo con text-shadow ===== */
+#pwd-generated.is-blink {
+    animation: apg-text-blink 700ms ease-out 1 both;
+}
+
+// @keyframes apg-text-blink {
+
+//     0%,
+//     100% {
+//         text-shadow: none;
+//     }
+
+//     25% {
+//         text-shadow: 0 0 1.1em color-mix(in srgb, var(--active-color) 70%, transparent);
+//     }
+
+//     50% {
+//         text-shadow: none;
+//     }
+
+//     75% {
+//         text-shadow: 0 0 0.8em color-mix(in srgb, var(--active-color) 55%, transparent);
+//     }
+// }
+
+@keyframes apg-text-blink {
+
+    0%,
+    100% {
+        text-shadow: none;
+    }
+
+    30% {
+        text-shadow: 0 0 3px color-mix(in srgb, var(--active-color) 100%, transparent);
+    }
+}
+
+/* Rispetta chi riduce le animazioni */
+@media (prefers-reduced-motion: reduce) {
+    #pwd-generated.is-blink {
+        animation: none;
+        text-shadow: none;
+    }
+}
