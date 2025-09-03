@@ -111,8 +111,11 @@
   </noscript>
   <div id="notification" class="notification is-invisible">
     <button class="delete"></button>
-    <p><strong>Password copied to clipboard!</strong></p>
-    <p><strong>Remember</strong>: Don't paste your password anywhere suspicious. For maximum security, consider using a
+    <p class="is-size-5"><strong>Password copied to clipboard!</strong></p>
+    <!-- <p class="mt-3"><strong><i class="las la-exclamation-circle"></i></p> -->
+    <p class="mt-3"><strong>Remember</strong>: Don't paste your password
+      anywhere
+      suspicious. For maximum security, consider using a
       password manager to securely store your passwords.</p>
   </div>
 
@@ -135,16 +138,16 @@
             <div id="pwd-actions-box">
               <div id="action-redo"
                 class="action redo is-clickable is-flex is-flex-direction-row is-align-items-center has-text-weight-bold">
-                <i class="las la-redo-alt"></i><span class="is-size-7">Refresh</span>
+                <i class="las la-redo-alt mr-1"></i><span class="is-size-7">Refresh</span>
               </div>
               <div id="action-copy-to-clipboard"
                 class="action clipboard is-clickable is-flex is-flex-direction-row is-align-items-center has-text-weight-bold">
-                <i class="las la-clipboard"></i><span class="is-size-7">Copy</span>
+                <i class="las la-clipboard mr-1"></i><span class="is-size-7">Copy</span>
               </div>
             </div>
             <div id="pwd-strength-tagbox"><span id="pwd-strength-tag" class="is-size-7 px-3">strong</span></div>
             <div id="pwd-strength-cracktimebox" class="is-size-7 px-3">
-              <i class="lar la-clock"></i> Crack time: <span id="pwd-strength-cracktime">0
+              <i class="lar la-clock mr-1"></i>Crack time: <span id="pwd-strength-cracktime">0
                 minutes</span>
             </div>
             <progress id="pwd-strength" class="progress" value="100" max="100"></progress>
